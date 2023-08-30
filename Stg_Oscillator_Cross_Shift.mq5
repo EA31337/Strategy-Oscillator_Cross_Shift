@@ -1,6 +1,6 @@
 /**
  * @file
- * Implements Oscillator Cross strategy.
+ * Implements Oscillator Cross Shift strategy.
  */
 
 // Includes conditional compilation directives.
@@ -9,10 +9,34 @@
 // Includes EA31337 framework.
 #include <EA31337-classes/EA.mqh>
 #include <EA31337-classes/IndicatorData.mqh>
+#include <EA31337-classes/Indicators/Indi_AC.mqh>
+#include <EA31337-classes/Indicators/Indi_AD.mqh>
 #include <EA31337-classes/Indicators/Indi_ADX.mqh>
 #include <EA31337-classes/Indicators/Indi_ADXW.mqh>
+#include <EA31337-classes/Indicators/Indi_AO.mqh>
+#include <EA31337-classes/Indicators/Indi_ATR.mqh>
+#include <EA31337-classes/Indicators/Indi_BWMFI.mqh>
+#include <EA31337-classes/Indicators/Indi_BearsPower.mqh>
+#include <EA31337-classes/Indicators/Indi_BullsPower.mqh>
+#include <EA31337-classes/Indicators/Indi_CCI.mqh>
+#include <EA31337-classes/Indicators/Indi_CHO.mqh>
+#include <EA31337-classes/Indicators/Indi_CHV.mqh>
+#include <EA31337-classes/Indicators/Indi_DeMarker.mqh>
 #include <EA31337-classes/Indicators/Indi_MACD.mqh>
+#include <EA31337-classes/Indicators/Indi_MFI.mqh>
+#include <EA31337-classes/Indicators/Indi_Momentum.mqh>
+#include <EA31337-classes/Indicators/Indi_OBV.mqh>
+#include <EA31337-classes/Indicators/Indi_PriceVolumeTrend.mqh>
+#include <EA31337-classes/Indicators/Indi_RSI.mqh>
 #include <EA31337-classes/Indicators/Indi_RVI.mqh>
+#include <EA31337-classes/Indicators/Indi_RateOfChange.mqh>
+#include <EA31337-classes/Indicators/Indi_StdDev.mqh>
+#include <EA31337-classes/Indicators/Indi_Stochastic.mqh>
+#include <EA31337-classes/Indicators/Indi_TRIX.mqh>
+#include <EA31337-classes/Indicators/Indi_UltimateOscillator.mqh>
+#include <EA31337-classes/Indicators/Indi_Volumes.mqh>
+#include <EA31337-classes/Indicators/Indi_WPR.mqh>
+#include <EA31337-classes/Indicators/Indi_WilliamsAD.mqh>
 // #include <EA31337-classes/Indicators/Oscillators/includes.h>
 #include <EA31337-classes/Strategy.mqh>
 
@@ -23,13 +47,13 @@ input ENUM_LOG_LEVEL Log_Level = V_INFO;  // Log level.
 input bool Info_On_Chart = true;          // Display info on chart.
 
 // Includes strategy.
-#include "Stg_Oscillator_Cross.mqh"
+#include "Stg_Oscillator_Cross_Shift.mqh"
 
 // Defines.
-#define ea_name "Strategy Oscillator_Cross"
+#define ea_name "Strategy Oscillator Cross Shift"
 #define ea_version "2.000"
-#define ea_desc "Strategy based on EA31337 framework."
-#define ea_link "https://github.com/EA31337/Strategy-Oscillator_Cross"
+#define ea_desc "Strategy based on selected oscillator-type indicators with shift crossable logic."
+#define ea_link "https://github.com/EA31337/Strategy-Oscillator_Cross_Shift"
 #define ea_author "EA31337 Ltd"
 
 // Properties.
@@ -55,7 +79,7 @@ int OnInit() {
   bool _result = true;
   EAParams ea_params(__FILE__, Log_Level);
   ea = new EA(ea_params);
-  _result &= ea.StrategyAdd<Stg_Oscillator_Cross>(Active_Tfs);
+  _result &= ea.StrategyAdd<Stg_Oscillator_Cross_Shift>(Active_Tfs);
   return (_result ? INIT_SUCCEEDED : INIT_FAILED);
 }
 
