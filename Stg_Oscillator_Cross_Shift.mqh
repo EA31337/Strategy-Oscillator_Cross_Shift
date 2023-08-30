@@ -1,6 +1,7 @@
 /**
  * @file
- * Implements Oscillator Cross_Shift strategy based on the Oscillator Cross_Shift indicator.
+ * Implements Oscillator Cross Shift strategy
+ * based on selected oscillator-type indicators with shift crossable logic.
  */
 
 // Enums.

@@ -10,7 +10,7 @@
 
 ## Description
 
-Strategy based on selected oscillator-type line-cross_shiftable cross_shift-valued indicators.
+Strategy based on selected oscillator-type indicators with shift crossable logic.
 
 ## Dependencies
 

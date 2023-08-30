@@ -1,6 +1,6 @@
 /**
  * @file
- * Implements Oscillator Cross_Shift strategy.
+ * Implements Oscillator Cross Shift strategy.
  */
 
 // Includes conditional compilation directives.
@@ -26,9 +26,9 @@ input bool Info_On_Chart = true;          // Display info on chart.
 #include "Stg_Oscillator_Cross_Shift.mqh"
 
 // Defines.
-#define ea_name "Strategy Oscillator_Cross_Shift"
+#define ea_name "Strategy Oscillator Cross Shift"
 #define ea_version "2.000"
-#define ea_desc "Strategy based on EA31337 framework."
+#define ea_desc "Strategy based on selected oscillator-type indicators with shift crossable logic."
 #define ea_link "https://github.com/EA31337/Strategy-Oscillator_Cross_Shift"
 #define ea_author "EA31337 Ltd"
 
