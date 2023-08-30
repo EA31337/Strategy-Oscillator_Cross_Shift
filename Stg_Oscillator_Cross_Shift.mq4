@@ -10,4 +10,4 @@
  */
 
 // Includes the main code.
-#include "Stg_Oscillator_Cross.mq5"
+#include "Stg_Oscillator_Cross_Shift.mq5"
