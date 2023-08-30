@@ -40,8 +40,7 @@ enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
 
 // User input params.
 INPUT_GROUP("Oscillator Cross_Shift strategy: main strategy params");
-INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type =
-    STG_OSCILLATOR_CROSS_SHIFT_TYPE_0_NONE;  // Oscillator type
+INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type = STG_OSCILLATOR_TYPE_MOM;  // Oscillator type
 INPUT_GROUP("Oscillator Cross_Shift strategy: strategy params");
 INPUT float Oscillator_Cross_Shift_LotSize = 0;                // Lot size
 INPUT int Oscillator_Cross_Shift_SignalOpenMethod = 2;         // Signal open method
@@ -237,7 +236,7 @@ INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_RVI_SourceType = IDATA_
 
 // Defines struct with default user strategy values.
 struct Stg_Oscillator_Cross_Shift_Params_Defaults : StgParams {
-  uint line_fast, line_slow;
+  uint shift1, shift2;
   Stg_Oscillator_Cross_Shift_Params_Defaults()
       : StgParams(::Oscillator_Cross_Shift_SignalOpenMethod, ::Oscillator_Cross_Shift_SignalOpenFilterMethod,
                   ::Oscillator_Cross_Shift_SignalOpenLevel, ::Oscillator_Cross_Shift_SignalOpenBoostMethod,
@@ -245,8 +244,8 @@ struct Stg_Oscillator_Cross_Shift_Params_Defaults : StgParams {
                   ::Oscillator_Cross_Shift_SignalCloseLevel, ::Oscillator_Cross_Shift_PriceStopMethod,
                   ::Oscillator_Cross_Shift_PriceStopLevel, ::Oscillator_Cross_Shift_TickFilterMethod,
                   ::Oscillator_Cross_Shift_MaxSpread, ::Oscillator_Cross_Shift),
-        line_fast(0),
-        line_slow(0) {
+        shift1(0),
+        shift2(0) {
     Set(STRAT_PARAM_LS, Oscillator_Cross_Shift_LotSize);
     Set(STRAT_PARAM_OCL, Oscillator_Cross_Shift_OrderCloseLoss);
     Set(STRAT_PARAM_OCP, Oscillator_Cross_Shift_OrderCloseProfit);
@@ -254,11 +253,11 @@ struct Stg_Oscillator_Cross_Shift_Params_Defaults : StgParams {
     Set(STRAT_PARAM_SOFT, Oscillator_Cross_Shift_SignalOpenFilterTime);
   }
   // Getters.
-  uint GetLineFast() { return line_fast; }
-  uint GetLineSlow() { return line_slow; }
+  uint GetShift1() { return shift1; }
+  uint GetShift2() { return shift2; }
   // Setters.
-  void SetLineFast(uint _value) { line_fast = _value; }
-  void SetLineSlow(uint _value) { line_slow = _value; }
+  void SetShift1(uint _value) { shift1 = _value; }
+  void SetShift2(uint _value) { shift2 = _value; }
 };
 
 class Stg_Oscillator_Cross_Shift : public Strategy {
@@ -422,6 +421,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_AC(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_AC_Shift2);
         SetIndicator(new Indi_AC(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_AC_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AC_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_AD:  // AD
@@ -432,6 +433,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_AD(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_AD_Shift2);
         SetIndicator(new Indi_AD(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_AD_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AD_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_AO:  // AO
@@ -442,6 +445,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_AO(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Awesome_Shift2);
         SetIndicator(new Indi_AO(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Awesome_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Awesome_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_ATR:  // ATR
@@ -452,6 +457,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_ATR(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_ATR_Shift2);
         SetIndicator(new Indi_ATR(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_ATR_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ATR_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_BEARS:  // Bears
@@ -464,6 +471,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_BearsPower(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BearsPower_Shift2);
         SetIndicator(new Indi_BearsPower(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BearsPower_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BearsPower_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_BULLS:  // Bulls
@@ -476,6 +485,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_BullsPower(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BullsPower_Shift2);
         SetIndicator(new Indi_BullsPower(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BullsPower_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BullsPower_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_BWMFI:  // BWMFI
@@ -486,6 +497,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_BWMFI(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BWMFI_Shift2);
         SetIndicator(new Indi_BWMFI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BWMFI_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BWMFI_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_CCI:  // CCI
@@ -498,6 +511,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_CCI(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CCI_Shift2);
         SetIndicator(new Indi_CCI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CCI_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CCI_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_CHO:  // Chaikin (CHO)
@@ -511,6 +526,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_CHO(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CHO_Shift2);
         SetIndicator(new Indi_CHO(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CHO_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHO_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_CHV:  // Chaikin Volatility (CHV)
@@ -523,6 +540,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_CHV(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CHV_Shift2);
         SetIndicator(new Indi_CHV(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CHV_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHV_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_DEMARKER:  // DeMarker
@@ -534,6 +553,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_DeMarker(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_DeMarker_Shift2);
         SetIndicator(new Indi_DeMarker(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_DeMarker_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_DeMarker_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_MFI:  // MFI
@@ -546,6 +567,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_MFI(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_MFI_Shift2);
         SetIndicator(new Indi_MFI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_MFI_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_MFI_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_MOM:  // MOM
@@ -558,6 +581,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_Momentum(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Momentum_Shift2);
         SetIndicator(new Indi_Momentum(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Momentum_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Momentum_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_OBV:  // OBV
@@ -569,6 +594,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_OBV(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_OBV_Shift2);
         SetIndicator(new Indi_OBV(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_OBV_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_OBV_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_PVT:  // PVT
@@ -580,6 +607,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_PriceVolumeTrend(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_PVT_Shift2);
         SetIndicator(new Indi_PriceVolumeTrend(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_PVT_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_PVT_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_ROC:  // ROC
@@ -592,6 +621,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_RateOfChange(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_ROC_Shift2);
         SetIndicator(new Indi_RateOfChange(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_ROC_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ROC_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_RSI:  // RSI
@@ -604,6 +635,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_RSI(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_RSI_Shift2);
         SetIndicator(new Indi_RSI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_RSI_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_RSI_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_STDDEV:  // StdDev
@@ -617,6 +650,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_StdDev(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_StdDev_Shift2);
         SetIndicator(new Indi_StdDev(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_StdDev_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_StdDev_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_STOCH:  // Stochastic
@@ -630,6 +665,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_Stochastic(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Stochastic_Shift2);
         SetIndicator(new Indi_Stochastic(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Stochastic_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Stochastic_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_TRIX:  // TRIX
@@ -642,6 +679,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_TRIX(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_TRIX_Shift2);
         SetIndicator(new Indi_TRIX(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_TRIX_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_TRIX_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_UO:  // UO
@@ -656,6 +695,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_UltimateOscillator(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_UO_Shift2);
         SetIndicator(new Indi_UltimateOscillator(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_UO_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_UO_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_WAD:  // Williams' AD
@@ -666,6 +707,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_WilliamsAD(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_WAD_Shift2);
         SetIndicator(new Indi_WilliamsAD(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_WAD_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WAD_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_WPR:  // WPR
@@ -676,6 +719,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_WPR(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_WPR_Shift2);
         SetIndicator(new Indi_WPR(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_WPR_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WPR_Shift2);
         break;
       }
       case STG_OSCILLATOR_TYPE_VOL:  // Volumes
@@ -687,6 +732,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         SetIndicator(new Indi_Volumes(_indi_params), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_VOL_Shift2);
         SetIndicator(new Indi_Volumes(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        ssparams.SetShift1(Oscillator_Cross_Shift_Indi_VOL_Shift);
+        ssparams.SetShift2(Oscillator_Cross_Shift_Indi_VOL_Shift2);
         break;
       }
         /* @todo: Convert multi into single mode.
@@ -751,42 +798,53 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
    * Check strategy's opening signal.
    */
   bool SignalOpen(ENUM_ORDER_TYPE _cmd, int _method, float _level = 0.0f, int _shift = 0) {
-    IndicatorBase *_indi = GetIndicator(::Oscillator_Cross_Shift_Type);
-    // uint _ishift = _indi.GetShift(); // @todo
-    bool _result = Oscillator_Cross_Shift_Type != STG_OSCILLATOR_CROSS_SHIFT_TYPE_0_NONE && IsValidEntry(_indi, _shift);
+    IndicatorBase *_indi1 = GetIndicator(::Oscillator_Cross_Shift_Type);
+    IndicatorBase *_indi2 = GetIndicator(::Oscillator_Cross_Shift_Type + 1);
+    // uint _ishift1 = _indi1.GetParams().GetShift(); // @todo: Convert into Get().
+    // uint _ishift2 = _indi2.GetParams().GetShift(); // @todo: Convert into Get().
+    uint _ishift1 = ssparams.GetShift1();
+    uint _ishift2 = ssparams.GetShift2();
+    bool _result = Oscillator_Cross_Shift_Type != STG_OSCILLATOR_CROSS_SHIFT_TYPE_0_NONE &&
+                   IsValidEntry(_indi1, _ishift1) && IsValidEntry(_indi2, _ishift2);
     if (!_result) {
       // Returns false when indicator data is not valid.
       return false;
     }
-    int _line_fast = (int)ssparams.GetLineFast();
-    int _line_slow = (int)ssparams.GetLineSlow();
-    double _value1 = _indi[_shift][_line_fast];
-    double _value2 = _indi[_shift][_line_slow];
+    double _value1 = _indi1[_shift][0];
+    double _value2 = _indi2[_shift][0];
     switch (_cmd) {
       case ORDER_TYPE_BUY:
         // Buy signal.
-        _result &= _indi.IsIncreasing(1, _line_fast, _shift);
-        _result &= _indi[_shift][_line_fast] > _indi[_shift][_line_slow];
-        _result &= _indi[_shift + 1][_line_fast] < _indi[_shift + 1][_line_slow];
-        _result &= Math::ChangeInPct(_indi[_shift + 1][_line_fast], _indi[_shift][_line_fast], true) > _level;
+        _result &= _indi1.IsIncreasing(1, 0, _shift);
+        _result &= _indi1[_shift][0] > _indi2[_shift][0];
+        _result &= _indi1[_shift + 1][0] < _indi2[_shift][0];
+        _result &= Math::ChangeInPct(_indi1[_shift + 1][0], _indi1[_shift][0], true) > _level;
         if (_result && _method != 0) {
-          _result &= _indi[_shift + 3][_line_fast] < _indi[_shift + 3][_line_slow];
-          if (METHOD(_method, 1))
-            _result &= fmax4(_indi[_shift][_line_fast], _indi[_shift + 1][_line_fast], _indi[_shift + 2][_line_fast],
-                             _indi[_shift + 3][_line_fast]) == _indi[_shift][_line_fast];
+          if (METHOD(_method, 0)) _result &= _indi1[_shift][0] < _indi1[_shift + 3][0];
+          if (METHOD(_method, 1)) _result &= _indi2[_shift][0] < _indi2[_shift + 3][0];
+          if (METHOD(_method, 2))
+            _result &= fmax4(_indi1[_shift][0], _indi1[_shift + 1][0], _indi1[_shift + 2][0], _indi1[_shift + 3][0]) ==
+                       _indi1[_shift][0];
+          if (METHOD(_method, 3))
+            _result &= fmax4(_indi2[_shift][0], _indi2[_shift + 1][0], _indi2[_shift + 2][0], _indi2[_shift + 3][0]) ==
+                       _indi2[_shift][0];
         }
         break;
       case ORDER_TYPE_SELL:
         // Sell signal.
-        _result &= _indi.IsDecreasing(1, _line_fast, _shift);
-        _result &= _indi[_shift][_line_fast] < _indi[_shift][_line_slow];
-        _result &= _indi[_shift + 1][_line_fast] > _indi[_shift + 1][_line_slow];
-        _result &= Math::ChangeInPct(_indi[_shift + 1][_line_fast], _indi[_shift][_line_fast], true) < _level;
+        _result &= _indi1.IsDecreasing(1, 0, _shift);
+        _result &= _indi1[_shift][0] < _indi2[_shift][0];
+        _result &= _indi1[_shift + 1][0] > _indi2[_shift][0];
+        _result &= Math::ChangeInPct(_indi1[_shift + 1][0], _indi1[_shift][0], true) < _level;
         if (_result && _method != 0) {
-          if (METHOD(_method, 0)) _result &= _indi[_shift + 3][_line_fast] > _indi[_shift + 3][_line_slow];
-          if (METHOD(_method, 1))
-            _result &= fmin4(_indi[_shift][_line_fast], _indi[_shift + 1][_line_fast], _indi[_shift + 2][_line_fast],
-                             _indi[_shift + 3][_line_fast]) == _indi[_shift][_line_fast];
+          if (METHOD(_method, 0)) _result &= _indi1[_shift][0] > _indi1[_shift + 3][0];
+          if (METHOD(_method, 1)) _result &= _indi2[_shift][0] > _indi2[_shift + 3][0];
+          if (METHOD(_method, 2))
+            _result &= fmin4(_indi1[_shift][0], _indi1[_shift + 1][0], _indi1[_shift + 2][0], _indi1[_shift + 3][0]) ==
+                       _indi1[_shift][0];
+          if (METHOD(_method, 3))
+            _result &= fmin4(_indi2[_shift][0], _indi2[_shift + 1][0], _indi2[_shift + 2][0], _indi2[_shift + 3][0]) ==
+                       _indi2[_shift][0];
         }
         break;
     }
