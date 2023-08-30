@@ -1,6 +1,6 @@
 /**
  * @file
- * Implements Oscillator Cross strategy.
+ * Implements Oscillator Cross_Shift strategy.
  */
 
 // Includes conditional compilation directives.
@@ -26,10 +26,10 @@ input bool Info_On_Chart = true;          // Display info on chart.
 #include "Stg_Oscillator_Cross_Shift.mqh"
 
 // Defines.
-#define ea_name "Strategy Oscillator_Cross"
+#define ea_name "Strategy Oscillator_Cross_Shift"
 #define ea_version "2.000"
 #define ea_desc "Strategy based on EA31337 framework."
-#define ea_link "https://github.com/EA31337/Strategy-Oscillator_Cross"
+#define ea_link "https://github.com/EA31337/Strategy-Oscillator_Cross_Shift"
 #define ea_author "EA31337 Ltd"
 
 // Properties.
@@ -55,7 +55,7 @@ int OnInit() {
   bool _result = true;
   EAParams ea_params(__FILE__, Log_Level);
   ea = new EA(ea_params);
-  _result &= ea.StrategyAdd<Stg_Oscillator_Cross>(Active_Tfs);
+  _result &= ea.StrategyAdd<Stg_Oscillator_Cross_Shift>(Active_Tfs);
   return (_result ? INIT_SUCCEEDED : INIT_FAILED);
 }
 
