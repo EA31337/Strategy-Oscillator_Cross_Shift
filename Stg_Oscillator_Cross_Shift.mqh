@@ -8,6 +8,30 @@
 
 enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
   STG_OSCILLATOR_CROSS_SHIFT_TYPE_0_NONE = 0,  // (None)
+  STG_OSCILLATOR_TYPE_AC,                      // AC: Accelerator/Decelerator
+  STG_OSCILLATOR_TYPE_AD,                      // AD: Accumulation/Distribution
+  STG_OSCILLATOR_TYPE_AO,                      // AO: Awesome
+  STG_OSCILLATOR_TYPE_ATR,                     // ATR
+  STG_OSCILLATOR_TYPE_BEARS,                   // Bears Power
+  STG_OSCILLATOR_TYPE_BULLS,                   // Bulls Power
+  STG_OSCILLATOR_TYPE_BWMFI,                   // BWMFI
+  STG_OSCILLATOR_TYPE_CCI,                     // CCI
+  STG_OSCILLATOR_TYPE_CHO,                     // CHO: Chaikin
+  STG_OSCILLATOR_TYPE_CHV,                     // CHV: Chaikin Volatility
+  STG_OSCILLATOR_TYPE_DEMARKER,                // DeMarker
+  STG_OSCILLATOR_TYPE_MFI,                     // MFI
+  STG_OSCILLATOR_TYPE_MOM,                     // MOM: Momentum
+  STG_OSCILLATOR_TYPE_OBV,                     // OBV: On Balance Volume
+  STG_OSCILLATOR_TYPE_PVT,                     // PVT: Price and Volume Trend
+  STG_OSCILLATOR_TYPE_ROC,                     // ROC: Rate of Change
+  STG_OSCILLATOR_TYPE_RSI,                     // RSI
+  STG_OSCILLATOR_TYPE_STDDEV,                  // StdDev: Standard Deviation
+  STG_OSCILLATOR_TYPE_STOCH,                   // Stochastic
+  STG_OSCILLATOR_TYPE_TRIX,                    // TRIX: Triple Exponential Average
+  STG_OSCILLATOR_TYPE_UO,                      // UO: Ultimate Oscillator
+  STG_OSCILLATOR_TYPE_WAD,                     // WAD: Larry Williams' Accumulation/Distribution
+  STG_OSCILLATOR_TYPE_WPR,                     // WPR
+  STG_OSCILLATOR_TYPE_VOL,                     // VOL: Volumes
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_ADX,         // ADX
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_ADXW,        // ADXW
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_MACD,        // MACD
@@ -36,6 +60,139 @@ INPUT short Oscillator_Cross_Shift = 0;                        // Shift
 INPUT float Oscillator_Cross_Shift_OrderCloseLoss = 80;        // Order close loss
 INPUT float Oscillator_Cross_Shift_OrderCloseProfit = 80;      // Order close profit
 INPUT int Oscillator_Cross_Shift_OrderCloseTime = -30;         // Order close time in mins (>0) or bars (<0)
+
+INPUT_GROUP("Oscillator strategy: AC oscillator params");
+INPUT int Oscillator_Indi_AC_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_AC_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_AC_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: AD oscillator params");
+INPUT int Oscillator_Indi_AD_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_AD_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_AD_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: ATR oscillator params");
+INPUT int Oscillator_Indi_ATR_Period = 13;  // Period
+INPUT int Oscillator_Indi_ATR_Shift = 0;    // Shift
+INPUT int Oscillator_Indi_ATR_Shift2 = 0;   // Shift 2
+INPUT_GROUP("Oscillator strategy: Awesome oscillator params");
+INPUT int Oscillator_Indi_Awesome_Shift = 0;   // Shift
+INPUT int Oscillator_Indi_Awesome_Shift2 = 0;  // Shift 2
+INPUT_GROUP("Oscillator strategy: BearsPower oscillator params");
+INPUT int Oscillator_Indi_BearsPower_Period = 30;                                 // Period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_BearsPower_Applied_Price = PRICE_CLOSE;  // Applied Price
+INPUT int Oscillator_Indi_BearsPower_Shift = 0;                                   // Shift
+INPUT int Oscillator_Indi_BearsPower_Shift2 = 0;                                  // Shift 2
+INPUT_GROUP("Oscillator strategy: BullsPower oscillator params");
+INPUT int Oscillator_Indi_BullsPower_Period = 30;                                 // Period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_BullsPower_Applied_Price = PRICE_CLOSE;  // Applied Price
+INPUT int Oscillator_Indi_BullsPower_Shift = 0;                                   // Shift
+INPUT int Oscillator_Indi_BullsPower_Shift2 = 0;                                  // Shift 2
+INPUT_GROUP("Oscillator strategy: BWMFI oscillator params");
+INPUT int Oscillator_Indi_BWMFI_Shift = 1;                                      // Shift
+INPUT int Oscillator_Indi_BWMFI_Shift2 = 1;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_BWMFI_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: CCI oscillator params");
+INPUT int Oscillator_Indi_CCI_Period = 20;                                   // Period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_CCI_Applied_Price = PRICE_TYPICAL;  // Applied Price
+INPUT int Oscillator_Indi_CCI_Shift = 0;                                     // Shift
+INPUT int Oscillator_Indi_CCI_Shift2 = 0;                                    // Shift 2
+INPUT_GROUP("Oscillator strategy: Chaikin oscillator params");
+INPUT int Oscillator_Indi_CHO_InpFastMA = 10;                                 // Fast EMA period
+INPUT int Oscillator_Indi_CHO_InpSlowMA = 30;                                 // Slow MA period
+INPUT ENUM_MA_METHOD Oscillator_Indi_CHO_InpSmoothMethod = MODE_SMMA;         // MA method
+INPUT ENUM_APPLIED_VOLUME Oscillator_Indi_CHO_InpVolumeType = VOLUME_TICK;    // Volumes
+INPUT int Oscillator_Indi_CHO_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_CHO_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_CHO_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: Chaikin Volatility oscillator params");
+INPUT unsigned int Oscillator_Indi_CHV_Smooth_Period;                         // Smooth period
+INPUT unsigned int Oscillator_Indi_CHV_Period;                                // Period
+INPUT ENUM_CHV_SMOOTH_METHOD Oscillator_Indi_CHV_Smooth_Method;               // Smooth method
+INPUT int Oscillator_Indi_CHV_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_CHV_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_CHV_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: DeMarker indicator params");
+INPUT int Oscillator_Indi_DeMarker_Period = 23;                                    // Period
+INPUT int Oscillator_Indi_DeMarker_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_DeMarker_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_DeMarker_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: MFI oscillator params");
+INPUT int Oscillator_Indi_MFI_MA_Period = 22;                                           // MA Period
+INPUT ENUM_APPLIED_VOLUME Oscillator_Indi_MFI_Applied_Volume = (ENUM_APPLIED_VOLUME)0;  // Applied volume.
+INPUT int Oscillator_Indi_MFI_Shift = 0;                                                // Shift
+INPUT int Oscillator_Indi_MFI_Shift2 = 0;                                               // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_MFI_SourceType = IDATA_BUILTIN;            // Source type
+INPUT_GROUP("Oscillator strategy: Momentum oscillator params");
+INPUT int Oscillator_Indi_Momentum_Period = 12;                                    // Averaging period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_Momentum_Applied_Price = PRICE_CLOSE;     // Applied Price
+INPUT int Oscillator_Indi_Momentum_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_Momentum_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_Momentum_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: OBV oscillator params");
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_OBV_Applied_Price = PRICE_CLOSE;     // Applied Price
+INPUT int Oscillator_Indi_OBV_Shift = 1;                                      // Shift
+INPUT int Oscillator_Indi_OBV_Shift2 = 1;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_OBV_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: PVT oscillator params");
+INPUT ENUM_APPLIED_VOLUME Oscillator_Indi_PVT_InpVolumeType = VOLUME_TICK;    // Volumes
+INPUT int Oscillator_Indi_PVT_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_PVT_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_PVT_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: ROC oscillator params");
+INPUT int Oscillator_Indi_ROC_Period = 16;                                    // Period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_ROC_Applied_Price = PRICE_WEIGHTED;  // Applied Price
+INPUT int Oscillator_Indi_ROC_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_ROC_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_ROC_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: RSI oscillator params");
+INPUT int Oscillator_Indi_RSI_Period = 16;                                    // Period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_RSI_Applied_Price = PRICE_WEIGHTED;  // Applied Price
+INPUT int Oscillator_Indi_RSI_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_RSI_Shift2 = 0;                                     // Shift 2
+INPUT_GROUP("Oscillator strategy: StdDev oscillator params");
+INPUT int Oscillator_Indi_StdDev_MA_Period = 24;                                 // Period
+INPUT int Oscillator_Indi_StdDev_MA_Shift = 0;                                   // MA Shift
+INPUT ENUM_MA_METHOD Oscillator_Indi_StdDev_MA_Method = (ENUM_MA_METHOD)3;       // MA Method
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_StdDev_Applied_Price = PRICE_WEIGHTED;  // Applied Price
+INPUT int Oscillator_Indi_StdDev_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_StdDev_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_StdDev_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: Stochastic oscillator params");
+INPUT int Oscillator_Indi_Stochastic_KPeriod = 8;                      // K line period
+INPUT int Oscillator_Indi_Stochastic_DPeriod = 12;                     // D line period
+INPUT int Oscillator_Indi_Stochastic_Slowing = 12;                     // Slowing
+INPUT ENUM_MA_METHOD Oscillator_Indi_Stochastic_MA_Method = MODE_EMA;  // Moving Average method
+INPUT ENUM_STO_PRICE Oscillator_Indi_Stochastic_Price_Field = 0;       // Price (0 - Low/High or 1 - Close/Close)
+INPUT int Oscillator_Indi_Stochastic_Shift = 0;                        // Shift
+INPUT int Oscillator_Indi_Stochastic_Shift2 = 0;                       // Shift 2
+INPUT_GROUP("Oscillator strategy: TRIX oscillator params");
+INPUT int Oscillator_Indi_TRIX_InpPeriodEMA = 14;                              // EMA period
+INPUT ENUM_APPLIED_PRICE Oscillator_Indi_TRIX_Applied_Price = PRICE_WEIGHTED;  // Applied Price
+INPUT int Oscillator_Indi_TRIX_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_TRIX_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_TRIX_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: Ultimate oscillator params");
+INPUT int Oscillator_Indi_UO_InpFastPeriod = 7;                              // Fast ATR period
+INPUT int Oscillator_Indi_UO_InpMiddlePeriod = 14;                           // Middle ATR period
+INPUT int Oscillator_Indi_UO_InpSlowPeriod = 28;                             // Slow ATR period
+INPUT int Oscillator_Indi_UO_InpFastK = 4;                                   // Fast K
+INPUT int Oscillator_Indi_UO_InpMiddleK = 2;                                 // Middle K
+INPUT int Oscillator_Indi_UO_InpSlowK = 1;                                   // Slow K
+INPUT int Oscillator_Indi_UO_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_UO_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_UO_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: Williams' Accumulation/Distribution oscillator params");
+INPUT int Oscillator_Indi_WAD_Shift = 0;                                      // Shift
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_WAD_SourceType = IDATA_BUILTIN;  // Source type
+INPUT_GROUP("Oscillator strategy: WPR oscillator params");
+INPUT int Oscillator_Indi_WPR_Period = 18;  // Period
+INPUT int Oscillator_Indi_WPR_Shift = 0;    // Shift
+INPUT int Oscillator_Indi_WPR_Shift2 = 0;   // Shift 2
+INPUT_GROUP("Oscillator strategy: Volumes oscillator params");
+INPUT ENUM_APPLIED_VOLUME Oscillator_Indi_VOL_InpVolumeType = VOLUME_TICK;    // Volumes
+INPUT int Oscillator_Indi_VOL_Shift = 0;                                      // Shift
+INPUT int Oscillator_Indi_VOL_Shift2 = 0;                                     // Shift 2
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Indi_VOL_SourceType = IDATA_BUILTIN;  // Source type
+
 /* @todo
 INPUT_GROUP("Oscillator Cross_Shift strategy: ADX indicator params");
 INPUT ENUM_INDI_ADX_LINE Oscillator_Cross_Shift_Indi_ADX_Fast_Line = LINE_PLUSDI;         // Fast line

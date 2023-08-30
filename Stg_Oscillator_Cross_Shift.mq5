@@ -9,10 +9,34 @@
 // Includes EA31337 framework.
 #include <EA31337-classes/EA.mqh>
 #include <EA31337-classes/IndicatorData.mqh>
+#include <EA31337-classes/Indicators/Indi_AC.mqh>
+#include <EA31337-classes/Indicators/Indi_AD.mqh>
 #include <EA31337-classes/Indicators/Indi_ADX.mqh>
 #include <EA31337-classes/Indicators/Indi_ADXW.mqh>
+#include <EA31337-classes/Indicators/Indi_AO.mqh>
+#include <EA31337-classes/Indicators/Indi_ATR.mqh>
+#include <EA31337-classes/Indicators/Indi_BWMFI.mqh>
+#include <EA31337-classes/Indicators/Indi_BearsPower.mqh>
+#include <EA31337-classes/Indicators/Indi_BullsPower.mqh>
+#include <EA31337-classes/Indicators/Indi_CCI.mqh>
+#include <EA31337-classes/Indicators/Indi_CHO.mqh>
+#include <EA31337-classes/Indicators/Indi_CHV.mqh>
+#include <EA31337-classes/Indicators/Indi_DeMarker.mqh>
 #include <EA31337-classes/Indicators/Indi_MACD.mqh>
+#include <EA31337-classes/Indicators/Indi_MFI.mqh>
+#include <EA31337-classes/Indicators/Indi_Momentum.mqh>
+#include <EA31337-classes/Indicators/Indi_OBV.mqh>
+#include <EA31337-classes/Indicators/Indi_PriceVolumeTrend.mqh>
+#include <EA31337-classes/Indicators/Indi_RSI.mqh>
 #include <EA31337-classes/Indicators/Indi_RVI.mqh>
+#include <EA31337-classes/Indicators/Indi_RateOfChange.mqh>
+#include <EA31337-classes/Indicators/Indi_StdDev.mqh>
+#include <EA31337-classes/Indicators/Indi_Stochastic.mqh>
+#include <EA31337-classes/Indicators/Indi_TRIX.mqh>
+#include <EA31337-classes/Indicators/Indi_UltimateOscillator.mqh>
+#include <EA31337-classes/Indicators/Indi_Volumes.mqh>
+#include <EA31337-classes/Indicators/Indi_WPR.mqh>
+#include <EA31337-classes/Indicators/Indi_WilliamsAD.mqh>
 // #include <EA31337-classes/Indicators/Oscillators/includes.h>
 #include <EA31337-classes/Strategy.mqh>
 
