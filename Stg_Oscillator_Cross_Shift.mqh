@@ -40,7 +40,7 @@ enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
 
 // User input params.
 INPUT_GROUP("Oscillator Cross_Shift strategy: main strategy params");
-INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type = STG_OSCILLATOR_TYPE_MOM;  // Oscillator type
+INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type = STG_OSCILLATOR_TYPE_AD;  // Oscillator type
 INPUT_GROUP("Oscillator Cross_Shift strategy: strategy params");
 INPUT float Oscillator_Cross_Shift_LotSize = 0;                // Lot size
 INPUT int Oscillator_Cross_Shift_SignalOpenMethod = 6;         // Signal open method
@@ -810,41 +810,41 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       // Returns false when indicator data is not valid.
       return false;
     }
-    double _value1 = _indi1[_shift][0];
-    double _value2 = _indi2[_shift][0];
+    double _value1 = _indi1[_ishift1][0];
+    double _value2 = _indi2[_ishift2][0];
     switch (_cmd) {
       case ORDER_TYPE_BUY:
         // Buy signal.
-        _result &= _indi1.IsIncreasing(1, 0, _shift);
-        _result &= _indi1[_shift][0] > _indi2[_shift][0];
-        _result &= _indi1[_shift + 1][0] < _indi2[_shift][0];
-        _result &= Math::ChangeInPct(_indi1[_shift + 1][0], _indi1[_shift][0], true) > _level;
+        _result &= _indi1.IsIncreasing(1, 0, _ishift1);
+        _result &= _indi1[_ishift1][0] > _indi2[_ishift2][0];
+        _result &= _indi1[_ishift1 + 1][0] < _indi2[_ishift2][0];
+        _result &= Math::ChangeInPct(_indi1[_ishift1 + 1][0], _indi1[_ishift1][0], true) > _level;
         if (_result && _method != 0) {
-          if (METHOD(_method, 0)) _result &= _indi1[_shift][0] < _indi1[_shift + 3][0];
-          if (METHOD(_method, 1)) _result &= _indi2[_shift][0] < _indi2[_shift + 3][0];
+          if (METHOD(_method, 0)) _result &= _indi1[_ishift1][0] < _indi1[_ishift1 + 3][0];
+          if (METHOD(_method, 1)) _result &= _indi2[_ishift2][0] < _indi2[_ishift2 + 3][0];
           if (METHOD(_method, 2))
-            _result &= fmax4(_indi1[_shift][0], _indi1[_shift + 1][0], _indi1[_shift + 2][0], _indi1[_shift + 3][0]) ==
-                       _indi1[_shift][0];
+            _result &= fmax4(_indi1[_ishift1][0], _indi1[_ishift1 + 1][0], _indi1[_ishift1 + 2][0],
+                             _indi1[_ishift1 + 3][0]) == _indi1[_ishift1][0];
           if (METHOD(_method, 3))
-            _result &= fmax4(_indi2[_shift][0], _indi2[_shift + 1][0], _indi2[_shift + 2][0], _indi2[_shift + 3][0]) ==
-                       _indi2[_shift][0];
+            _result &= fmax4(_indi2[_ishift2][0], _indi2[_ishift2 + 1][0], _indi2[_ishift2 + 2][0],
+                             _indi2[_ishift2 + 3][0]) == _indi2[_ishift2][0];
         }
         break;
       case ORDER_TYPE_SELL:
         // Sell signal.
         _result &= _indi1.IsDecreasing(1, 0, _shift);
-        _result &= _indi1[_shift][0] < _indi2[_shift][0];
-        _result &= _indi1[_shift + 1][0] > _indi2[_shift][0];
-        _result &= Math::ChangeInPct(_indi1[_shift + 1][0], _indi1[_shift][0], true) < _level;
+        _result &= _indi1[_ishift1][0] < _indi2[_ishift2][0];
+        _result &= _indi1[_ishift1 + 1][0] > _indi2[_ishift2][0];
+        _result &= Math::ChangeInPct(_indi1[_ishift1 + 1][0], _indi1[_ishift1][0], true) < _level;
         if (_result && _method != 0) {
-          if (METHOD(_method, 0)) _result &= _indi1[_shift][0] > _indi1[_shift + 3][0];
-          if (METHOD(_method, 1)) _result &= _indi2[_shift][0] > _indi2[_shift + 3][0];
+          if (METHOD(_method, 0)) _result &= _indi1[_ishift1][0] > _indi1[_ishift1 + 3][0];
+          if (METHOD(_method, 1)) _result &= _indi2[_ishift2][0] > _indi2[_ishift2 + 3][0];
           if (METHOD(_method, 2))
-            _result &= fmin4(_indi1[_shift][0], _indi1[_shift + 1][0], _indi1[_shift + 2][0], _indi1[_shift + 3][0]) ==
-                       _indi1[_shift][0];
+            _result &= fmin4(_indi1[_ishift1][0], _indi1[_ishift1 + 1][0], _indi1[_ishift1 + 2][0],
+                             _indi1[_ishift1 + 3][0]) == _indi1[_ishift1][0];
           if (METHOD(_method, 3))
-            _result &= fmin4(_indi2[_shift][0], _indi2[_shift + 1][0], _indi2[_shift + 2][0], _indi2[_shift + 3][0]) ==
-                       _indi2[_shift][0];
+            _result &= fmin4(_indi2[_ishift2][0], _indi2[_ishift2 + 1][0], _indi2[_ishift2 + 2][0],
+                             _indi2[_ishift2 + 3][0]) == _indi2[_ishift2][0];
         }
         break;
     }
