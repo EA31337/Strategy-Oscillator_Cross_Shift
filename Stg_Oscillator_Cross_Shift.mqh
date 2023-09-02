@@ -818,7 +818,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         // Buy signal.
         _result &= _indi1.IsIncreasing(1, 0, _ishift1);
         _result &= _indi1[_ishift1][0] > _indi2[_ishift2][0];
-        _result &= _indi1[_ishift1 + 1][0] < _indi2[_ishift2][0];
+        _result &= _indi1[_ishift1 + 1][0] < _indi2[_ishift2 + 1][0];
         _result &= Math::ChangeInPct(_indi1[_ishift1 + 1][0], _indi1[_ishift1][0], true) > _level;
         if (_result && _method != 0) {
           if (METHOD(_method, 0)) _result &= _indi1[_ishift1][0] < _indi1[_ishift1 + 3][0];
@@ -833,9 +833,9 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         break;
       case ORDER_TYPE_SELL:
         // Sell signal.
-        _result &= _indi1.IsDecreasing(1, 0, _shift);
+        _result &= _indi1.IsDecreasing(1, 0, _ishift1);
         _result &= _indi1[_ishift1][0] < _indi2[_ishift2][0];
-        _result &= _indi1[_ishift1 + 1][0] > _indi2[_ishift2][0];
+        _result &= _indi1[_ishift1 + 1][0] > _indi2[_ishift2 + 1][0];
         _result &= Math::ChangeInPct(_indi1[_ishift1 + 1][0], _indi1[_ishift1][0], true) < _level;
         if (_result && _method != 0) {
           if (METHOD(_method, 0)) _result &= _indi1[_ishift1][0] > _indi1[_ishift1 + 3][0];
