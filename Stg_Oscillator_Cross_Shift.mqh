@@ -45,13 +45,13 @@ INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type =
 INPUT_GROUP("Oscillator Cross_Shift strategy: strategy params");
 INPUT float Oscillator_Cross_Shift_LotSize = 0;                // Lot size
 INPUT int Oscillator_Cross_Shift_SignalOpenMethod = 6;         // Signal open method
-INPUT float Oscillator_Cross_Shift_SignalOpenLevel = 10.0f;    // Signal open level
+INPUT float Oscillator_Cross_Shift_SignalOpenLevel = 5.0f;     // Signal open level
 INPUT int Oscillator_Cross_Shift_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT int Oscillator_Cross_Shift_SignalOpenFilterTime = 3;     // Signal open filter time (0-31)
 INPUT int Oscillator_Cross_Shift_SignalOpenBoostMethod = 0;    // Signal open boost method
 INPUT int Oscillator_Cross_Shift_SignalCloseMethod = 0;        // Signal close method
 INPUT int Oscillator_Cross_Shift_SignalCloseFilter = 32;       // Signal close filter (-127-127)
-INPUT float Oscillator_Cross_Shift_SignalCloseLevel = 10.0f;   // Signal close level
+INPUT float Oscillator_Cross_Shift_SignalCloseLevel = 5.0f;    // Signal close level
 INPUT int Oscillator_Cross_Shift_PriceStopMethod = 0;          // Price limit method
 INPUT float Oscillator_Cross_Shift_PriceStopLevel = 2;         // Price limit level
 INPUT int Oscillator_Cross_Shift_TickFilterMethod = 32;        // Tick filter method (0-255)
