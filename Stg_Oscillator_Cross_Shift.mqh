@@ -247,11 +247,11 @@ struct Stg_Oscillator_Cross_Shift_Params_Defaults : StgParams {
                   ::Oscillator_Cross_Shift_MaxSpread, ::Oscillator_Cross_Shift_Shift),
         shift1(0),
         shift2(0) {
-    Set(STRAT_PARAM_LS, Oscillator_Cross_Shift_LotSize);
-    Set(STRAT_PARAM_OCL, Oscillator_Cross_Shift_OrderCloseLoss);
-    Set(STRAT_PARAM_OCP, Oscillator_Cross_Shift_OrderCloseProfit);
-    Set(STRAT_PARAM_OCT, Oscillator_Cross_Shift_OrderCloseTime);
-    Set(STRAT_PARAM_SOFT, Oscillator_Cross_Shift_SignalOpenFilterTime);
+    Set(STRAT_PARAM_LS, ::Oscillator_Cross_Shift_LotSize);
+    Set(STRAT_PARAM_OCL, ::Oscillator_Cross_Shift_OrderCloseLoss);
+    Set(STRAT_PARAM_OCP, ::Oscillator_Cross_Shift_OrderCloseProfit);
+    Set(STRAT_PARAM_OCT, ::Oscillator_Cross_Shift_OrderCloseTime);
+    Set(STRAT_PARAM_SOFT, ::Oscillator_Cross_Shift_SignalOpenFilterTime);
   }
   // Getters.
   uint GetShift1() { return shift1; }
@@ -277,7 +277,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
     ChartParams _cparams(_tf, _Symbol);
     TradeParams _tparams;
     Stg_Oscillator_Cross_Shift *_strat =
-        new Stg_Oscillator_Cross_Shift(_stg_params, _tparams, _cparams, "Oscillator_Cross_Shift");
+        new Stg_Oscillator_Cross_Shift(_stg_params, _tparams, _cparams, "Oscillator Cross Shift");
     _strat.ssparams = stg_oscillator_cross_shift_defaults;
     return _strat;
   }
@@ -287,7 +287,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
    */
   bool IsValidEntry(IndicatorBase *_indi, int _shift = 0) {
     bool _result = true;
-    switch (Oscillator_Cross_Shift_Type) {
+    switch (::Oscillator_Cross_Shift_Type) {
       case STG_OSCILLATOR_SHIFT_TYPE_AC:
         _result &= dynamic_cast<Indi_AC *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_AC *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
