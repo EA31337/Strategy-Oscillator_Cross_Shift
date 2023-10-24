@@ -7,30 +7,30 @@
 
 enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
   STG_OSCILLATOR_CROSS_SHIFT_TYPE_0_NONE = 0,  // (None)
-  STG_OSCILLATOR_SHIFT_TYPE_AC,                // AC: Accelerator/Decelerator
-  STG_OSCILLATOR_SHIFT_TYPE_AD,                // AD: Accumulation/Distribution
-  STG_OSCILLATOR_SHIFT_TYPE_AO,                // AO: Awesome
-  STG_OSCILLATOR_SHIFT_TYPE_ATR,               // ATR
-  STG_OSCILLATOR_SHIFT_TYPE_BEARS,             // Bears Power
-  STG_OSCILLATOR_SHIFT_TYPE_BULLS,             // Bulls Power
-  STG_OSCILLATOR_SHIFT_TYPE_BWMFI,             // BWMFI
-  STG_OSCILLATOR_SHIFT_TYPE_CCI,               // CCI
-  STG_OSCILLATOR_SHIFT_TYPE_CHO,               // CHO: Chaikin
-  STG_OSCILLATOR_SHIFT_TYPE_CHV,               // CHV: Chaikin Volatility
-  STG_OSCILLATOR_SHIFT_TYPE_DEMARKER,          // DeMarker
-  STG_OSCILLATOR_SHIFT_TYPE_MFI,               // MFI
-  STG_OSCILLATOR_SHIFT_TYPE_MOM,               // MOM: Momentum
-  STG_OSCILLATOR_SHIFT_TYPE_OBV,               // OBV: On Balance Volume
-  STG_OSCILLATOR_SHIFT_TYPE_PVT,               // PVT: Price and Volume Trend
-  STG_OSCILLATOR_SHIFT_TYPE_ROC,               // ROC: Rate of Change
-  STG_OSCILLATOR_SHIFT_TYPE_RSI,               // RSI
-  STG_OSCILLATOR_SHIFT_TYPE_STDDEV,            // StdDev: Standard Deviation
-  STG_OSCILLATOR_SHIFT_TYPE_STOCH,             // Stochastic
-  STG_OSCILLATOR_SHIFT_TYPE_TRIX,              // TRIX: Triple Exponential Average
-  STG_OSCILLATOR_SHIFT_TYPE_UO,                // UO: Ultimate Oscillator
-  STG_OSCILLATOR_SHIFT_TYPE_WAD,               // WAD: Larry Williams' Accumulation/Distribution
-  STG_OSCILLATOR_SHIFT_TYPE_WPR,               // WPR
-  STG_OSCILLATOR_SHIFT_TYPE_VOL,               // VOL: Volumes
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_AC,          // AC: Accelerator/Decelerator
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_AD,          // AD: Accumulation/Distribution
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_AO,          // AO: Awesome
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_ATR,         // ATR
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_BEARS,       // Bears Power
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_BULLS,       // Bulls Power
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_BWMFI,       // BWMFI
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_CCI,         // CCI
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHO,         // CHO: Chaikin
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHV,         // CHV: Chaikin Volatility
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_DEMARKER,    // DeMarker
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_MFI,         // MFI
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_MOM,         // MOM: Momentum
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_OBV,         // OBV: On Balance Volume
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_PVT,         // PVT: Price and Volume Trend
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_ROC,         // ROC: Rate of Change
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_RSI,         // RSI
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_STDDEV,      // StdDev: Standard Deviation
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_STOCH,       // Stochastic
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_TRIX,        // TRIX: Triple Exponential Average
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_UO,          // UO: Ultimate Oscillator
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_WAD,         // WAD: Larry Williams' Accumulation/Distribution
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_WPR,         // WPR
+  STG_OSCILLATOR_CROSS_SHIFT_TYPE_VOL,         // VOL: Volumes
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_ADX,         // ADX
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_ADXW,        // ADXW
   // STG_OSCILLATOR_CROSS_SHIFT_TYPE_MACD,        // MACD
@@ -40,7 +40,7 @@ enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
 // User input params.
 INPUT_GROUP("Oscillator Cross Shift strategy: main strategy params");
 INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type =
-    STG_OSCILLATOR_SHIFT_TYPE_AD;  // Oscillator type
+    STG_OSCILLATOR_CROSS_SHIFT_TYPE_AD;  // Oscillator type
 INPUT_GROUP("Oscillator Cross Shift strategy: strategy params");
 INPUT float Oscillator_Cross_Shift_LotSize = 0;                // Lot size
 INPUT int Oscillator_Cross_Shift_SignalOpenMethod = 6;         // Signal open method
@@ -60,46 +60,46 @@ INPUT float Oscillator_Cross_Shift_OrderCloseLoss = 80;        // Order close lo
 INPUT float Oscillator_Cross_Shift_OrderCloseProfit = 80;      // Order close profit
 INPUT int Oscillator_Cross_Shift_OrderCloseTime = -30;         // Order close time in mins (>0) or bars (<0)
 
-INPUT_GROUP("Oscillator strategy: AC oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: AC oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_AC_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_AC_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_AC_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: AD oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: AD oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_AD_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_AD_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_AD_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: ATR oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: ATR oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_ATR_Period = 13;                                    // Period
 INPUT int Oscillator_Cross_Shift_Indi_ATR_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_ATR_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_ATR_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Awesome oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Awesome oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_Awesome_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_Awesome_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_Awesome_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: BearsPower oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: BearsPower oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_BearsPower_Period = 30;                                    // Period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_BearsPower_Applied_Price = PRICE_CLOSE;     // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_BearsPower_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_BearsPower_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_BearsPower_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: BullsPower oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: BullsPower oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_BullsPower_Period = 30;                                    // Period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_BullsPower_Applied_Price = PRICE_CLOSE;     // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_BullsPower_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_BullsPower_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_BullsPower_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: BWMFI oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: BWMFI oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_BWMFI_Shift = 1;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_BWMFI_Shift2 = 1;                                     // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_BWMFI_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: CCI oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: CCI oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_CCI_Period = 20;                                    // Period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_CCI_Applied_Price = PRICE_TYPICAL;   // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_CCI_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_CCI_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_CCI_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Chaikin oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Chaikin oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_CHO_InpFastMA = 10;                                 // Fast EMA period
 INPUT int Oscillator_Cross_Shift_Indi_CHO_InpSlowMA = 30;                                 // Slow MA period
 INPUT ENUM_MA_METHOD Oscillator_Cross_Shift_Indi_CHO_InpSmoothMethod = MODE_SMMA;         // MA method
@@ -107,53 +107,53 @@ INPUT ENUM_APPLIED_VOLUME Oscillator_Cross_Shift_Indi_CHO_InpVolumeType = VOLUME
 INPUT int Oscillator_Cross_Shift_Indi_CHO_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_CHO_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_CHO_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Chaikin Volatility oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Chaikin Volatility oscillator params");
 INPUT unsigned int Oscillator_Cross_Shift_Indi_CHV_Smooth_Period;                         // Smooth period
 INPUT unsigned int Oscillator_Cross_Shift_Indi_CHV_Period;                                // Period
 INPUT ENUM_CHV_SMOOTH_METHOD Oscillator_Cross_Shift_Indi_CHV_Smooth_Method;               // Smooth method
 INPUT int Oscillator_Cross_Shift_Indi_CHV_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_CHV_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_CHV_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: DeMarker indicator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: DeMarker indicator params");
 INPUT int Oscillator_Cross_Shift_Indi_DeMarker_Period = 23;                                    // Period
 INPUT int Oscillator_Cross_Shift_Indi_DeMarker_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_DeMarker_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_DeMarker_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: MFI oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: MFI oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_MFI_MA_Period = 22;                                           // MA Period
 INPUT ENUM_APPLIED_VOLUME Oscillator_Cross_Shift_Indi_MFI_Applied_Volume = (ENUM_APPLIED_VOLUME)0;  // Applied volume.
 INPUT int Oscillator_Cross_Shift_Indi_MFI_Shift = 0;                                                // Shift
 INPUT int Oscillator_Cross_Shift_Indi_MFI_Shift2 = 10;                                              // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_MFI_SourceType = IDATA_BUILTIN;            // Source type
-INPUT_GROUP("Oscillator strategy: Momentum oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Momentum oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_Momentum_Period = 12;                                    // Averaging period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_Momentum_Applied_Price = PRICE_CLOSE;     // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_Momentum_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_Momentum_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_Momentum_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: OBV oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: OBV oscillator params");
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_OBV_Applied_Price = PRICE_CLOSE;     // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_OBV_Shift = 1;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_OBV_Shift2 = 1;                                     // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_OBV_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: PVT oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: PVT oscillator params");
 INPUT ENUM_APPLIED_VOLUME Oscillator_Cross_Shift_Indi_PVT_InpVolumeType = VOLUME_TICK;    // Volumes
 INPUT int Oscillator_Cross_Shift_Indi_PVT_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_PVT_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_PVT_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: ROC oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: ROC oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_ROC_Period = 16;                                    // Period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_ROC_Applied_Price = PRICE_WEIGHTED;  // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_ROC_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_ROC_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_ROC_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: RSI oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: RSI oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_RSI_Period = 16;                                    // Period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_RSI_Applied_Price = PRICE_WEIGHTED;  // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_RSI_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_RSI_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_RSI_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: StdDev oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: StdDev oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_StdDev_MA_Period = 24;                                 // Period
 INPUT int Oscillator_Cross_Shift_Indi_StdDev_MA_Shift = 0;                                   // MA Shift
 INPUT ENUM_MA_METHOD Oscillator_Cross_Shift_Indi_StdDev_MA_Method = (ENUM_MA_METHOD)3;       // MA Method
@@ -161,7 +161,7 @@ INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_StdDev_Applied_Price = PRIC
 INPUT int Oscillator_Cross_Shift_Indi_StdDev_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_StdDev_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_StdDev_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Stochastic oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Stochastic oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_Stochastic_KPeriod = 8;                      // K line period
 INPUT int Oscillator_Cross_Shift_Indi_Stochastic_DPeriod = 12;                     // D line period
 INPUT int Oscillator_Cross_Shift_Indi_Stochastic_Slowing = 12;                     // Slowing
@@ -170,13 +170,13 @@ INPUT ENUM_STO_PRICE Oscillator_Cross_Shift_Indi_Stochastic_Price_Field = 0;  //
 INPUT int Oscillator_Cross_Shift_Indi_Stochastic_Shift = 0;                   // Shift
 INPUT int Oscillator_Cross_Shift_Indi_Stochastic_Shift2 = 10;                 // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_Stochastic_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: TRIX oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: TRIX oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_TRIX_InpPeriodEMA = 14;                              // EMA period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_TRIX_Applied_Price = PRICE_WEIGHTED;  // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_TRIX_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_TRIX_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_TRIX_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Ultimate oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Ultimate oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_UO_InpFastPeriod = 7;                              // Fast ATR period
 INPUT int Oscillator_Cross_Shift_Indi_UO_InpMiddlePeriod = 14;                           // Middle ATR period
 INPUT int Oscillator_Cross_Shift_Indi_UO_InpSlowPeriod = 28;                             // Slow ATR period
@@ -186,16 +186,16 @@ INPUT int Oscillator_Cross_Shift_Indi_UO_InpSlowK = 1;                          
 INPUT int Oscillator_Cross_Shift_Indi_UO_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_UO_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_UO_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Williams' Accumulation/Distribution oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Williams' Accumulation/Distribution oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_WAD_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_WAD_Shift2 = 0;                                     // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_WAD_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: WPR oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: WPR oscillator params");
 INPUT int Oscillator_Cross_Shift_Indi_WPR_Period = 18;                                    // Period
 INPUT int Oscillator_Cross_Shift_Indi_WPR_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_WPR_Shift2 = 10;                                    // Shift 2
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_WPR_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: Volumes oscillator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: Volumes oscillator params");
 INPUT ENUM_APPLIED_VOLUME Oscillator_Cross_Shift_Indi_VOL_InpVolumeType = VOLUME_TICK;    // Volumes
 INPUT int Oscillator_Cross_Shift_Indi_VOL_Shift = 0;                                      // Shift
 INPUT int Oscillator_Cross_Shift_Indi_VOL_Shift2 = 10;                                    // Shift 2
@@ -216,7 +216,7 @@ INPUT int Oscillator_Cross_Shift_Indi_ADXW_Period = 16;                         
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_ADXW_AppliedPrice = PRICE_TYPICAL;    // Applied price
 INPUT int Oscillator_Cross_Shift_Indi_ADXW_Shift = 0;                                      // Shift
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_ADXW_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator strategy: MACD indicator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: MACD indicator params");
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_MACD_Fast_Line = LINE_SIGNAL;  // Fast line
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_MACD_Slow_Line = LINE_MAIN;    // Slow line
 INPUT int Oscillator_Cross_Shift_Indi_MACD_Period_Fast = 6;                                   // Period Fast
@@ -224,7 +224,7 @@ INPUT int Oscillator_Cross_Shift_Indi_MACD_Period_Slow = 34;                    
 INPUT int Oscillator_Cross_Shift_Indi_MACD_Period_Signal = 10;                                // Period Signal
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_MACD_Applied_Price = PRICE_OPEN;         // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_MACD_Shift = 0;                                         // Shift
-INPUT_GROUP("Oscillator strategy: RVI indicator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: RVI indicator params");
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_RVI_Fast_Line = LINE_SIGNAL;           // Fast line
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_RVI_Slow_Line = LINE_MAIN;             // Slow line
 INPUT unsigned int Oscillator_Cross_Shift_Indi_RVI_Period = 12;                                       // Averaging
@@ -287,99 +287,99 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
   bool IsValidEntry(IndicatorBase *_indi, int _shift = 0) {
     bool _result = true;
     switch (::Oscillator_Cross_Shift_Type) {
-      case STG_OSCILLATOR_SHIFT_TYPE_AC:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AC:
         _result &= dynamic_cast<Indi_AC *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_AC *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_AD:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AD:
         _result &= dynamic_cast<Indi_AD *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_AD *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_AO:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AO:
         _result &= dynamic_cast<Indi_AO *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_AO *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_ATR:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_ATR:
         _result &= dynamic_cast<Indi_ATR *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_ATR *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_BEARS:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BEARS:
         _result &= dynamic_cast<Indi_BearsPower *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_BearsPower *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_BULLS:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BULLS:
         _result &= dynamic_cast<Indi_BullsPower *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_BullsPower *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_BWMFI:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BWMFI:
         _result &= dynamic_cast<Indi_BWMFI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_BWMFI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_CCI:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CCI:
         _result &= dynamic_cast<Indi_CCI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_CCI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_CHO:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHO:
         _result &= dynamic_cast<Indi_CHO *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_CHO *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_CHV:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHV:
         _result &= dynamic_cast<Indi_CHV *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_CHV *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_DEMARKER:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_DEMARKER:
         _result &= dynamic_cast<Indi_DeMarker *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_DeMarker *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_MFI:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_MFI:
         _result &= dynamic_cast<Indi_MFI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_MFI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_MOM:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_MOM:
         _result &= dynamic_cast<Indi_Momentum *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_Momentum *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_OBV:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_OBV:
         _result &= dynamic_cast<Indi_OBV *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_OBV *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_PVT:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_PVT:
         _result &= dynamic_cast<Indi_PriceVolumeTrend *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_PriceVolumeTrend *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_ROC:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_ROC:
         _result &= dynamic_cast<Indi_RateOfChange *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_RateOfChange *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_RSI:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_RSI:
         _result &= dynamic_cast<Indi_RSI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_RSI *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_STDDEV:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_STDDEV:
         _result &= dynamic_cast<Indi_StdDev *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_StdDev *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_STOCH:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_STOCH:
         _result &= dynamic_cast<Indi_Stochastic *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_Stochastic *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_TRIX:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_TRIX:
         _result &= dynamic_cast<Indi_TRIX *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_TRIX *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_UO:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_UO:
         _result &= dynamic_cast<Indi_UltimateOscillator *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_UltimateOscillator *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_WPR:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_WPR:
         _result &= dynamic_cast<Indi_WPR *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_WPR *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_WAD:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_WAD:
         _result &= dynamic_cast<Indi_WilliamsAD *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_WilliamsAD *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
-      case STG_OSCILLATOR_SHIFT_TYPE_VOL:
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_VOL:
         _result &= dynamic_cast<Indi_Volumes *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift) &&
                    dynamic_cast<Indi_Volumes *>(_indi).GetFlag(INDI_ENTRY_FLAG_IS_VALID, _shift + 1);
         break;
@@ -413,7 +413,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
   void OnInit() {
     // Initialize indicators.
     switch (Oscillator_Cross_Shift_Type) {
-      case STG_OSCILLATOR_SHIFT_TYPE_AC:  // AC
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AC:  // AC
       {
         IndiACParams _indi_params(::Oscillator_Cross_Shift_Indi_AC_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_AC_SourceType);
@@ -425,7 +425,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AC_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_AD:  // AD
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AD:  // AD
       {
         IndiADParams _indi_params(::Oscillator_Cross_Shift_Indi_AD_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_AD_SourceType);
@@ -437,7 +437,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AD_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_AO:  // AO
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_AO:  // AO
       {
         IndiAOParams _indi_params(::Oscillator_Cross_Shift_Indi_Awesome_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_Awesome_SourceType);
@@ -449,7 +449,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Awesome_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_ATR:  // ATR
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_ATR:  // ATR
       {
         IndiATRParams _indi_params(::Oscillator_Cross_Shift_Indi_ATR_Period, ::Oscillator_Cross_Shift_Indi_ATR_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_ATR_SourceType);
@@ -461,7 +461,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ATR_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_BEARS:  // Bears
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BEARS:  // Bears
       {
         IndiBearsPowerParams _indi_params(::Oscillator_Cross_Shift_Indi_BearsPower_Period,
                                           ::Oscillator_Cross_Shift_Indi_BearsPower_Applied_Price,
@@ -475,7 +475,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BearsPower_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_BULLS:  // Bulls
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BULLS:  // Bulls
       {
         IndiBullsPowerParams _indi_params(::Oscillator_Cross_Shift_Indi_BullsPower_Period,
                                           ::Oscillator_Cross_Shift_Indi_BullsPower_Applied_Price,
@@ -489,7 +489,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BullsPower_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_BWMFI:  // BWMFI
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_BWMFI:  // BWMFI
       {
         IndiBWIndiMFIParams _indi_params(::Oscillator_Cross_Shift_Indi_BWMFI_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_BWMFI_SourceType);
@@ -501,7 +501,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BWMFI_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_CCI:  // CCI
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CCI:  // CCI
       {
         IndiCCIParams _indi_params(::Oscillator_Cross_Shift_Indi_CCI_Period,
                                    ::Oscillator_Cross_Shift_Indi_CCI_Applied_Price,
@@ -515,7 +515,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CCI_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_CHO:  // Chaikin (CHO)
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHO:  // Chaikin (CHO)
       {
         IndiCHOParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_CHO_InpFastMA, ::Oscillator_Cross_Shift_Indi_CHO_InpSlowMA,
@@ -530,7 +530,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHO_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_CHV:  // Chaikin Volatility (CHV)
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_CHV:  // Chaikin Volatility (CHV)
       {
         IndiCHVParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_CHV_Smooth_Period, ::Oscillator_Cross_Shift_Indi_CHV_Period,
@@ -544,7 +544,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHV_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_DEMARKER:  // DeMarker
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_DEMARKER:  // DeMarker
       {
         IndiDeMarkerParams _indi_params(::Oscillator_Cross_Shift_Indi_DeMarker_Period,
                                         ::Oscillator_Cross_Shift_Indi_DeMarker_Shift);
@@ -557,7 +557,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_DeMarker_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_MFI:  // MFI
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_MFI:  // MFI
       {
         IndiMFIParams _indi_params(::Oscillator_Cross_Shift_Indi_MFI_MA_Period,
                                    ::Oscillator_Cross_Shift_Indi_MFI_Applied_Volume,
@@ -571,7 +571,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_MFI_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_MOM:  // MOM
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_MOM:  // MOM
       {
         IndiMomentumParams _indi_params(::Oscillator_Cross_Shift_Indi_Momentum_Period,
                                         ::Oscillator_Cross_Shift_Indi_Momentum_Applied_Price,
@@ -585,7 +585,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Momentum_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_OBV:  // OBV
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_OBV:  // OBV
       {
         IndiOBVParams _indi_params(::Oscillator_Cross_Shift_Indi_OBV_Applied_Price,
                                    ::Oscillator_Cross_Shift_Indi_OBV_Shift);
@@ -598,7 +598,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_OBV_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_PVT:  // PVT
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_PVT:  // PVT
       {
         IndiPriceVolumeTrendParams _indi_params(::Oscillator_Cross_Shift_Indi_PVT_InpVolumeType,
                                                 ::Oscillator_Cross_Shift_Indi_PVT_Shift);
@@ -611,7 +611,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_PVT_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_ROC:  // ROC
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_ROC:  // ROC
       {
         IndiRateOfChangeParams _indi_params(::Oscillator_Cross_Shift_Indi_ROC_Period,
                                             ::Oscillator_Cross_Shift_Indi_ROC_Applied_Price,
@@ -625,7 +625,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ROC_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_RSI:  // RSI
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_RSI:  // RSI
       {
         IndiRSIParams _indi_params(::Oscillator_Cross_Shift_Indi_RSI_Period,
                                    ::Oscillator_Cross_Shift_Indi_RSI_Applied_Price,
@@ -639,7 +639,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_RSI_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_STDDEV:  // StdDev
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_STDDEV:  // StdDev
       {
         IndiStdDevParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_StdDev_MA_Period, ::Oscillator_Cross_Shift_Indi_StdDev_MA_Shift,
@@ -654,7 +654,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_StdDev_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_STOCH:  // Stochastic
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_STOCH:  // Stochastic
       {
         IndiStochParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_Stochastic_KPeriod, ::Oscillator_Cross_Shift_Indi_Stochastic_DPeriod,
@@ -669,7 +669,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Stochastic_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_TRIX:  // TRIX
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_TRIX:  // TRIX
       {
         IndiTRIXParams _indi_params(::Oscillator_Cross_Shift_Indi_TRIX_InpPeriodEMA,
                                     ::Oscillator_Cross_Shift_Indi_TRIX_Applied_Price,
@@ -683,7 +683,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_TRIX_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_UO:  // UO
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_UO:  // UO
       {
         IndiUltimateOscillatorParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_UO_InpFastPeriod, ::Oscillator_Cross_Shift_Indi_UO_InpMiddlePeriod,
@@ -699,7 +699,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_UO_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_WAD:  // Williams' AD
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_WAD:  // Williams' AD
       {
         IndiWilliamsADParams _indi_params(::Oscillator_Cross_Shift_Indi_WAD_Shift);
         _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_WAD_SourceType);
@@ -711,7 +711,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WAD_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_WPR:  // WPR
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_WPR:  // WPR
       {
         IndiWPRParams _indi_params(::Oscillator_Cross_Shift_Indi_WPR_Period, ::Oscillator_Cross_Shift_Indi_WPR_Shift);
         _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_WPR_SourceType);
@@ -723,7 +723,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WPR_Shift2);
         break;
       }
-      case STG_OSCILLATOR_SHIFT_TYPE_VOL:  // Volumes
+      case STG_OSCILLATOR_CROSS_SHIFT_TYPE_VOL:  // Volumes
       {
         IndiVolumesParams _indi_params(::Oscillator_Cross_Shift_Indi_VOL_InpVolumeType,
                                        ::Oscillator_Cross_Shift_Indi_VOL_Shift);
