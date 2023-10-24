@@ -1,4 +1,4 @@
-# Strategy Oscillator Cross_Shift
+# Strategy Oscillator Cross Shift
 
 [![Status][gha-image-check-master]][gha-link-check-master]
 [![Status][gha-image-compile-master]][gha-link-compile-master]

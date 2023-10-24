@@ -1,7 +1,6 @@
 /**
  * @file
- * Implements Oscillator Cross Shift strategy
- * based on selected oscillator-type indicators with shift crossable logic.
+ * Implements Oscillator Cross Shift strategy.
  */
 
 // Enums.
@@ -39,10 +38,10 @@ enum ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE {
 };
 
 // User input params.
-INPUT_GROUP("Oscillator Cross_Shift strategy: main strategy params");
+INPUT_GROUP("Oscillator Cross Shift strategy: main strategy params");
 INPUT ENUM_STG_OSCILLATOR_CROSS_SHIFT_TYPE Oscillator_Cross_Shift_Type =
     STG_OSCILLATOR_SHIFT_TYPE_AD;  // Oscillator type
-INPUT_GROUP("Oscillator Cross_Shift strategy: strategy params");
+INPUT_GROUP("Oscillator Cross Shift strategy: strategy params");
 INPUT float Oscillator_Cross_Shift_LotSize = 0;                // Lot size
 INPUT int Oscillator_Cross_Shift_SignalOpenMethod = 6;         // Signal open method
 INPUT float Oscillator_Cross_Shift_SignalOpenLevel = 5.0f;     // Signal open level
@@ -203,14 +202,14 @@ INPUT int Oscillator_Cross_Shift_Indi_VOL_Shift2 = 10;                          
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_VOL_SourceType = IDATA_BUILTIN;  // Source type
 
 /* @todo
-INPUT_GROUP("Oscillator Cross_Shift strategy: ADX indicator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: ADX indicator params");
 INPUT ENUM_INDI_ADX_LINE Oscillator_Cross_Shift_Indi_ADX_Fast_Line = LINE_PLUSDI;         // Fast line
 INPUT ENUM_INDI_ADX_LINE Oscillator_Cross_Shift_Indi_ADX_Slow_Line = LINE_MINUSDI;        // Slow line to cross_shift
 INPUT int Oscillator_Cross_Shift_Indi_ADX_Period = 16;                                    // Averaging period
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_ADX_AppliedPrice = PRICE_TYPICAL;    // Applied price
 INPUT int Oscillator_Cross_Shift_Indi_ADX_Shift = 0;                                      // Shift
 INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_ADX_SourceType = IDATA_BUILTIN;  // Source type
-INPUT_GROUP("Oscillator Cross_Shift strategy: ADXW indicator params");
+INPUT_GROUP("Oscillator Cross Shift strategy: ADXW indicator params");
 INPUT ENUM_INDI_ADX_LINE Oscillator_Cross_Shift_Indi_ADXW_Fast_Line = LINE_PLUSDI;         // Fast line
 INPUT ENUM_INDI_ADX_LINE Oscillator_Cross_Shift_Indi_ADXW_Slow_Line = LINE_MINUSDI;        // Slow line to cross_shift
 INPUT int Oscillator_Cross_Shift_Indi_ADXW_Period = 16;                                    // Averaging period
