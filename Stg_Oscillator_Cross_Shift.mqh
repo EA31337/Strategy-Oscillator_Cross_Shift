@@ -224,6 +224,7 @@ INPUT int Oscillator_Cross_Shift_Indi_MACD_Period_Slow = 34;                    
 INPUT int Oscillator_Cross_Shift_Indi_MACD_Period_Signal = 10;                                // Period Signal
 INPUT ENUM_APPLIED_PRICE Oscillator_Cross_Shift_Indi_MACD_Applied_Price = PRICE_OPEN;         // Applied Price
 INPUT int Oscillator_Cross_Shift_Indi_MACD_Shift = 0;                                         // Shift
+INPUT ENUM_IDATA_SOURCE_TYPE Oscillator_Cross_Shift_Indi_MACD_SourceType = IDATA_BUILTIN;     // Source type
 INPUT_GROUP("Oscillator strategy: RVI indicator params");
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_RVI_Fast_Line = LINE_SIGNAL;           // Fast line
 INPUT ENUM_SIGNAL_LINE Oscillator_Cross_Shift_Indi_RVI_Slow_Line = LINE_MAIN;             // Slow line
@@ -416,11 +417,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_AC:  // AC
       {
         IndiACParams _indi_params(::Oscillator_Cross_Shift_Indi_AC_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_AC_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_AC(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_AC(_indi_params, ::Oscillator_Cross_Shift_Indi_AC_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_AC_Shift2);
-        SetIndicator(new Indi_AC(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_AC(_indi_params, ::Oscillator_Cross_Shift_Indi_AC_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_AC_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AC_Shift2);
         break;
@@ -428,11 +428,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_AD:  // AD
       {
         IndiADParams _indi_params(::Oscillator_Cross_Shift_Indi_AD_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_AD_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_AD(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_AD(_indi_params, ::Oscillator_Cross_Shift_Indi_AD_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_AD_Shift2);
-        SetIndicator(new Indi_AD(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_AD(_indi_params, ::Oscillator_Cross_Shift_Indi_AD_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_AD_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_AD_Shift2);
         break;
@@ -440,11 +439,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_AO:  // AO
       {
         IndiAOParams _indi_params(::Oscillator_Cross_Shift_Indi_Awesome_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_Awesome_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_AO(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_AO(_indi_params, ::Oscillator_Cross_Shift_Indi_Awesome_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Awesome_Shift2);
-        SetIndicator(new Indi_AO(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_AO(_indi_params, ::Oscillator_Cross_Shift_Indi_Awesome_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Awesome_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Awesome_Shift2);
         break;
@@ -452,11 +450,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_ATR:  // ATR
       {
         IndiATRParams _indi_params(::Oscillator_Cross_Shift_Indi_ATR_Period, ::Oscillator_Cross_Shift_Indi_ATR_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_ATR_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_ATR(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_ATR(_indi_params, ::Oscillator_Cross_Shift_Indi_ATR_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_ATR_Shift2);
-        SetIndicator(new Indi_ATR(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_ATR(_indi_params, ::Oscillator_Cross_Shift_Indi_ATR_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_ATR_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ATR_Shift2);
         break;
@@ -466,11 +463,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiBearsPowerParams _indi_params(::Oscillator_Cross_Shift_Indi_BearsPower_Period,
                                           ::Oscillator_Cross_Shift_Indi_BearsPower_Applied_Price,
                                           ::Oscillator_Cross_Shift_Indi_BearsPower_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_BearsPower_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_BearsPower(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_BearsPower(_indi_params, ::Oscillator_Cross_Shift_Indi_BearsPower_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BearsPower_Shift2);
-        SetIndicator(new Indi_BearsPower(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_BearsPower(_indi_params, ::Oscillator_Cross_Shift_Indi_BearsPower_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BearsPower_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BearsPower_Shift2);
         break;
@@ -480,11 +476,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiBullsPowerParams _indi_params(::Oscillator_Cross_Shift_Indi_BullsPower_Period,
                                           ::Oscillator_Cross_Shift_Indi_BullsPower_Applied_Price,
                                           ::Oscillator_Cross_Shift_Indi_BullsPower_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_BullsPower_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_BullsPower(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_BullsPower(_indi_params, ::Oscillator_Cross_Shift_Indi_BullsPower_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BullsPower_Shift2);
-        SetIndicator(new Indi_BullsPower(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_BullsPower(_indi_params, ::Oscillator_Cross_Shift_Indi_BullsPower_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BullsPower_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BullsPower_Shift2);
         break;
@@ -492,11 +487,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_BWMFI:  // BWMFI
       {
         IndiBWIndiMFIParams _indi_params(::Oscillator_Cross_Shift_Indi_BWMFI_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_BWMFI_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_BWMFI(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_BWMFI(_indi_params, ::Oscillator_Cross_Shift_Indi_BWMFI_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_BWMFI_Shift2);
-        SetIndicator(new Indi_BWMFI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_BWMFI(_indi_params, ::Oscillator_Cross_Shift_Indi_BWMFI_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_BWMFI_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_BWMFI_Shift2);
         break;
@@ -506,11 +500,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiCCIParams _indi_params(::Oscillator_Cross_Shift_Indi_CCI_Period,
                                    ::Oscillator_Cross_Shift_Indi_CCI_Applied_Price,
                                    ::Oscillator_Cross_Shift_Indi_CCI_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_CCI_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_CCI(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_CCI(_indi_params, ::Oscillator_Cross_Shift_Indi_CCI_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CCI_Shift2);
-        SetIndicator(new Indi_CCI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_CCI(_indi_params, ::Oscillator_Cross_Shift_Indi_CCI_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CCI_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CCI_Shift2);
         break;
@@ -521,11 +514,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
             ::Oscillator_Cross_Shift_Indi_CHO_InpFastMA, ::Oscillator_Cross_Shift_Indi_CHO_InpSlowMA,
             ::Oscillator_Cross_Shift_Indi_CHO_InpSmoothMethod, ::Oscillator_Cross_Shift_Indi_CHO_InpVolumeType,
             ::Oscillator_Cross_Shift_Indi_CHO_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_CHO_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_CHO(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_CHO(_indi_params, ::Oscillator_Cross_Shift_Indi_CHO_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CHO_Shift2);
-        SetIndicator(new Indi_CHO(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_CHO(_indi_params, ::Oscillator_Cross_Shift_Indi_CHO_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CHO_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHO_Shift2);
         break;
@@ -535,11 +527,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiCHVParams _indi_params(
             ::Oscillator_Cross_Shift_Indi_CHV_Smooth_Period, ::Oscillator_Cross_Shift_Indi_CHV_Period,
             ::Oscillator_Cross_Shift_Indi_CHV_Smooth_Method, ::Oscillator_Cross_Shift_Indi_CHV_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_CHV_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_CHV(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_CHV(_indi_params, ::Oscillator_Cross_Shift_Indi_CHV_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_CHV_Shift2);
-        SetIndicator(new Indi_CHV(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_CHV(_indi_params, ::Oscillator_Cross_Shift_Indi_CHV_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_CHV_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_CHV_Shift2);
         break;
@@ -548,11 +539,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       {
         IndiDeMarkerParams _indi_params(::Oscillator_Cross_Shift_Indi_DeMarker_Period,
                                         ::Oscillator_Cross_Shift_Indi_DeMarker_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_DeMarker_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_DeMarker(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_DeMarker(_indi_params, ::Oscillator_Cross_Shift_Indi_DeMarker_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_DeMarker_Shift2);
-        SetIndicator(new Indi_DeMarker(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_DeMarker(_indi_params, ::Oscillator_Cross_Shift_Indi_DeMarker_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_DeMarker_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_DeMarker_Shift2);
         break;
@@ -562,11 +552,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiMFIParams _indi_params(::Oscillator_Cross_Shift_Indi_MFI_MA_Period,
                                    ::Oscillator_Cross_Shift_Indi_MFI_Applied_Volume,
                                    ::Oscillator_Cross_Shift_Indi_MFI_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_MFI_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_MFI(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_MFI(_indi_params, ::Oscillator_Cross_Shift_Indi_MFI_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_MFI_Shift2);
-        SetIndicator(new Indi_MFI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_MFI(_indi_params, ::Oscillator_Cross_Shift_Indi_MFI_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_MFI_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_MFI_Shift2);
         break;
@@ -576,11 +565,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiMomentumParams _indi_params(::Oscillator_Cross_Shift_Indi_Momentum_Period,
                                         ::Oscillator_Cross_Shift_Indi_Momentum_Applied_Price,
                                         ::Oscillator_Cross_Shift_Indi_Momentum_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_Momentum_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_Momentum(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_Momentum(_indi_params, ::Oscillator_Cross_Shift_Indi_Momentum_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Momentum_Shift2);
-        SetIndicator(new Indi_Momentum(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_Momentum(_indi_params, ::Oscillator_Cross_Shift_Indi_Momentum_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Momentum_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Momentum_Shift2);
         break;
@@ -589,11 +577,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       {
         IndiOBVParams _indi_params(::Oscillator_Cross_Shift_Indi_OBV_Applied_Price,
                                    ::Oscillator_Cross_Shift_Indi_OBV_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_OBV_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_OBV(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_OBV(_indi_params, ::Oscillator_Cross_Shift_Indi_OBV_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_OBV_Shift2);
-        SetIndicator(new Indi_OBV(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_OBV(_indi_params, ::Oscillator_Cross_Shift_Indi_OBV_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_OBV_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_OBV_Shift2);
         break;
@@ -602,11 +589,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       {
         IndiPriceVolumeTrendParams _indi_params(::Oscillator_Cross_Shift_Indi_PVT_InpVolumeType,
                                                 ::Oscillator_Cross_Shift_Indi_PVT_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_PVT_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_PriceVolumeTrend(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_PriceVolumeTrend(_indi_params, ::Oscillator_Cross_Shift_Indi_PVT_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_PVT_Shift2);
-        SetIndicator(new Indi_PriceVolumeTrend(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_PriceVolumeTrend(_indi_params, ::Oscillator_Cross_Shift_Indi_PVT_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_PVT_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_PVT_Shift2);
         break;
@@ -616,11 +602,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiRateOfChangeParams _indi_params(::Oscillator_Cross_Shift_Indi_ROC_Period,
                                             ::Oscillator_Cross_Shift_Indi_ROC_Applied_Price,
                                             ::Oscillator_Cross_Shift_Indi_ROC_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_ROC_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_RateOfChange(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_RateOfChange(_indi_params, ::Oscillator_Cross_Shift_Indi_ROC_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_ROC_Shift2);
-        SetIndicator(new Indi_RateOfChange(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_RateOfChange(_indi_params, ::Oscillator_Cross_Shift_Indi_ROC_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_ROC_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_ROC_Shift2);
         break;
@@ -630,11 +615,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiRSIParams _indi_params(::Oscillator_Cross_Shift_Indi_RSI_Period,
                                    ::Oscillator_Cross_Shift_Indi_RSI_Applied_Price,
                                    ::Oscillator_Cross_Shift_Indi_RSI_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_RSI_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_RSI(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_RSI(_indi_params, ::Oscillator_Cross_Shift_Indi_RSI_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_RSI_Shift2);
-        SetIndicator(new Indi_RSI(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_RSI(_indi_params, ::Oscillator_Cross_Shift_Indi_RSI_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_RSI_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_RSI_Shift2);
         break;
@@ -645,11 +629,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
             ::Oscillator_Cross_Shift_Indi_StdDev_MA_Period, ::Oscillator_Cross_Shift_Indi_StdDev_MA_Shift,
             ::Oscillator_Cross_Shift_Indi_StdDev_MA_Method, ::Oscillator_Cross_Shift_Indi_StdDev_Applied_Price,
             ::Oscillator_Cross_Shift_Indi_StdDev_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_StdDev_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_StdDev(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_StdDev(_indi_params, ::Oscillator_Cross_Shift_Indi_StdDev_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_StdDev_Shift2);
-        SetIndicator(new Indi_StdDev(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_StdDev(_indi_params, ::Oscillator_Cross_Shift_Indi_StdDev_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_StdDev_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_StdDev_Shift2);
         break;
@@ -660,11 +643,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
             ::Oscillator_Cross_Shift_Indi_Stochastic_KPeriod, ::Oscillator_Cross_Shift_Indi_Stochastic_DPeriod,
             ::Oscillator_Cross_Shift_Indi_Stochastic_Slowing, ::Oscillator_Cross_Shift_Indi_Stochastic_MA_Method,
             ::Oscillator_Cross_Shift_Indi_Stochastic_Price_Field, ::Oscillator_Cross_Shift_Indi_Stochastic_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_Stochastic_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_Stochastic(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_Stochastic(_indi_params, ::Oscillator_Cross_Shift_Indi_Stochastic_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_Stochastic_Shift2);
-        SetIndicator(new Indi_Stochastic(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_Stochastic(_indi_params, ::Oscillator_Cross_Shift_Indi_Stochastic_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_Stochastic_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_Stochastic_Shift2);
         break;
@@ -674,11 +656,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
         IndiTRIXParams _indi_params(::Oscillator_Cross_Shift_Indi_TRIX_InpPeriodEMA,
                                     ::Oscillator_Cross_Shift_Indi_TRIX_Applied_Price,
                                     ::Oscillator_Cross_Shift_Indi_TRIX_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_TRIX_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_TRIX(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_TRIX(_indi_params, ::Oscillator_Cross_Shift_Indi_TRIX_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_TRIX_Shift2);
-        SetIndicator(new Indi_TRIX(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_TRIX(_indi_params, ::Oscillator_Cross_Shift_Indi_TRIX_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_TRIX_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_TRIX_Shift2);
         break;
@@ -690,11 +671,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
             ::Oscillator_Cross_Shift_Indi_UO_InpSlowPeriod, ::Oscillator_Cross_Shift_Indi_UO_InpFastK,
             ::Oscillator_Cross_Shift_Indi_UO_InpMiddleK, ::Oscillator_Cross_Shift_Indi_UO_InpSlowK,
             ::Oscillator_Cross_Shift_Indi_UO_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_UO_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_UltimateOscillator(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_UltimateOscillator(_indi_params, ::Oscillator_Cross_Shift_Indi_UO_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_UO_Shift2);
-        SetIndicator(new Indi_UltimateOscillator(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_UltimateOscillator(_indi_params, ::Oscillator_Cross_Shift_Indi_UO_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_UO_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_UO_Shift2);
         break;
@@ -702,11 +682,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_WAD:  // Williams' AD
       {
         IndiWilliamsADParams _indi_params(::Oscillator_Cross_Shift_Indi_WAD_Shift);
-        _indi_params.SetDataSourceType(Oscillator_Cross_Shift_Indi_WAD_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_WilliamsAD(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_WilliamsAD(_indi_params, ::Oscillator_Cross_Shift_Indi_WAD_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_WAD_Shift2);
-        SetIndicator(new Indi_WilliamsAD(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_WilliamsAD(_indi_params, ::Oscillator_Cross_Shift_Indi_WAD_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_WAD_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WAD_Shift2);
         break;
@@ -714,11 +693,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       case STG_OSCILLATOR_SHIFT_TYPE_WPR:  // WPR
       {
         IndiWPRParams _indi_params(::Oscillator_Cross_Shift_Indi_WPR_Period, ::Oscillator_Cross_Shift_Indi_WPR_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_WPR_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_WPR(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_WPR(_indi_params, ::Oscillator_Cross_Shift_Indi_WPR_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_WPR_Shift2);
-        SetIndicator(new Indi_WPR(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_WPR(_indi_params, ::Oscillator_Cross_Shift_Indi_WPR_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_WPR_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_WPR_Shift2);
         break;
@@ -727,11 +705,10 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
       {
         IndiVolumesParams _indi_params(::Oscillator_Cross_Shift_Indi_VOL_InpVolumeType,
                                        ::Oscillator_Cross_Shift_Indi_VOL_Shift);
-        _indi_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_VOL_SourceType);
         _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-        SetIndicator(new Indi_Volumes(_indi_params), ::Oscillator_Cross_Shift_Type);
+        SetIndicator(new Indi_Volumes(_indi_params, ::Oscillator_Cross_Shift_Indi_VOL_SourceType), ::Oscillator_Cross_Shift_Type);
         _indi_params.SetShift(::Oscillator_Cross_Shift_Indi_VOL_Shift2);
-        SetIndicator(new Indi_Volumes(_indi_params), ::Oscillator_Cross_Shift_Type + 1);
+        SetIndicator(new Indi_Volumes(_indi_params, ::Oscillator_Cross_Shift_Indi_VOL_SourceType), ::Oscillator_Cross_Shift_Type + 1);
         ssparams.SetShift1(Oscillator_Cross_Shift_Indi_VOL_Shift);
         ssparams.SetShift2(Oscillator_Cross_Shift_Indi_VOL_Shift2);
         break;
@@ -742,9 +719,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
                 IndiADXParams _adx_params(::Oscillator_Cross_Shift_Indi_ADX_Period,
                                           ::Oscillator_Cross_Shift_Indi_ADX_AppliedPrice,
                                           ::Oscillator_Cross_Shift_Indi_ADX_Shift);
-                _adx_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_ADX_SourceType);
                 _adx_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-                SetIndicator(new Indi_ADX(_adx_params), ::Oscillator_Cross_Shift_Type);
+                SetIndicator(new Indi_ADX(_adx_params, ::Oscillator_Cross_Shift_Indi_ADX_SourceType), ::Oscillator_Cross_Shift_Type);
                 // sparams.SetLineFast(0); // @todo: Fix Strategy to allow custom params stored in sparam.
                 ssparams.SetLineFast((uint)Oscillator_Cross_Shift_Indi_ADX_Fast_Line);
                 ssparams.SetLineSlow((uint)Oscillator_Cross_Shift_Indi_ADX_Slow_Line);
@@ -755,9 +731,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
                 IndiADXWParams _adxw_params(::Oscillator_Cross_Shift_Indi_ADXW_Period,
                                             ::Oscillator_Cross_Shift_Indi_ADXW_AppliedPrice,
                                             ::Oscillator_Cross_Shift_Indi_ADXW_Shift);
-                _adxw_params.SetDataSourceType(::Oscillator_Cross_Shift_Indi_ADXW_SourceType);
                 _adxw_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-                SetIndicator(new Indi_ADXW(_adxw_params), ::Oscillator_Cross_Shift_Type);
+                SetIndicator(new Indi_ADXW(_adxw_params, ::Oscillator_Cross_Shift_Indi_ADXW_SourceType), ::Oscillator_Cross_Shift_Type);
                 // sparams.SetLineFast(0); // @todo: Fix Strategy to allow custom params stored in sparam.
                 ssparams.SetLineFast((uint)Oscillator_Cross_Shift_Indi_ADXW_Fast_Line);
                 ssparams.SetLineSlow((uint)Oscillator_Cross_Shift_Indi_ADXW_Slow_Line);
@@ -771,7 +746,7 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
            ::Oscillator_Cross_Shift_Indi_MACD_Applied_Price,
                                             ::Oscillator_Cross_Shift_Indi_MACD_Shift);
                 _indi_params.SetTf(Get<ENUM_TIMEFRAMES>(STRAT_PARAM_TF));
-                SetIndicator(new Indi_MACD(_indi_params), ::Oscillator_Cross_Shift_Type);
+                SetIndicator(new Indi_MACD(_indi_params, ::Oscillator_Cross_Shift_Indi_MACD_SourceType), ::Oscillator_Cross_Shift_Type);
                 ssparams.SetLineFast((uint)Oscillator_Cross_Shift_Indi_MACD_Fast_Line);
                 ssparams.SetLineSlow((uint)Oscillator_Cross_Shift_Indi_MACD_Slow_Line);
                 break;
@@ -798,8 +773,8 @@ class Stg_Oscillator_Cross_Shift : public Strategy {
    * Check strategy's opening signal.
    */
   bool SignalOpen(ENUM_ORDER_TYPE _cmd, int _method, float _level = 0.0f, int _shift = 0) {
-    IndicatorBase *_indi1 = GetIndicator(::Oscillator_Cross_Shift_Type);
-    IndicatorBase *_indi2 = GetIndicator(::Oscillator_Cross_Shift_Type + 1);
+    IndicatorData *_indi1 = GetIndicator(::Oscillator_Cross_Shift_Type);
+    IndicatorData *_indi2 = GetIndicator(::Oscillator_Cross_Shift_Type + 1);
     // uint _ishift1 = _indi1.GetParams().GetShift(); // @todo: Convert into Get().
     // uint _ishift2 = _indi2.GetParams().GetShift(); // @todo: Convert into Get().
     uint _ishift1 = ssparams.GetShift1();
